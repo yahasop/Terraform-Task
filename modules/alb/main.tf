@@ -1,6 +1,6 @@
 resource "aws_lb" "my-alb" {
   name               = "my-application-load-balancer"
-  internal           = false #This means the LB is facing public internet
+  internal           = false         #This means the LB is facing public internet
   load_balancer_type = "application" #Sets the LB type. In this case its an Application Load Balancer (ALB)
   security_groups    = [var.secgroup-id]
   subnets            = [var.subnet1-id, var.subnet2-id, var.subnet3-id] #Sets the LB to route traffic into the selected subnets

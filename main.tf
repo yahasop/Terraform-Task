@@ -9,8 +9,8 @@ terraform {
   backend "s3" {
     bucket = "terraform-backend-grid-ysolis" #Globally unique within all AWS
     region = "us-east-1"
-    key = "terraform.tfstate"
-    
+    key    = "terraform.tfstate"
+
   }
 }
 
@@ -63,7 +63,7 @@ resource "aws_instance" "temporary-vm" {
 #Disadvantage of this is that every apply the instance will be destroyed and created, as the timestamp changes
 #Same happens with the data block as it has the same timestamp
 resource "aws_ami_from_instance" "temporaryvm-ami" {
-  name                    = "temporaryvm_ami-${formatdate("YYYY-MM-DD", timestamp())}"  
+  name                    = "temporaryvm_ami-${formatdate("YYYY-MM-DD", timestamp())}"
   source_instance_id      = aws_instance.temporary-vm.id
   snapshot_without_reboot = true
   depends_on              = [aws_instance.temporary-vm]
