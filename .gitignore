@@ -4,4 +4,4 @@
 *.tfstate.*
 .terraform.lock.hcl
 .DS_Store
-tfstate
+tf-state
