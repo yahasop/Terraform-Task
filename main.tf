@@ -7,6 +7,7 @@ terraform {
   }
 
   backend "s3" {
+
     bucket = "terraform-backend-grid-ysolis" #Globally unique within all AWS
     region = "us-east-1"
     key    = "terraform.tfstate"
