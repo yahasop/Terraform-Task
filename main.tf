@@ -5,6 +5,13 @@ terraform {
       version = "5.69.0"
     }
   }
+
+  backend "s3" {
+    bucket = "terraform-backend-grid-ysolis" #Globally unique within all AWS
+    region = "us-east-1"
+    key = "terraform.tfstate"
+    
+  }
 }
 
 #Uses the vpc module
@@ -52,8 +59,11 @@ resource "aws_instance" "temporary-vm" {
 }
 
 #This block creates the AMI
+#A custom name for the AMI is provided using built-in functions
+#Disadvantage of this is that every apply the instance will be destroyed and created, as the timestamp changes
+#Same happens with the data block as it has the same timestamp
 resource "aws_ami_from_instance" "temporaryvm-ami" {
-  name                    = "temporaryvm_ami-${formatdate("YYYY-MM-DD", timestamp())}" #A custom name for the AMI using built-in functions 
+  name                    = "temporaryvm_ami-${formatdate("YYYY-MM-DD", timestamp())}"  
   source_instance_id      = aws_instance.temporary-vm.id
   snapshot_without_reboot = true
   depends_on              = [aws_instance.temporary-vm]

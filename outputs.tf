@@ -1,3 +1,3 @@
-output "lb-dns" {
-  value = module.alb.alb-dns
+output "loadbalancer-dns" {
+  value = "Access load balancer with: ${module.alb.alb-dns}"
 }
