@@ -1,5 +1,5 @@
 data "http" "my-ip" {
-  url = "https://ifconfig.me"
+  url = "https://ipv4.ifconfig.me"
 }
 
 resource "aws_vpc" "my-vpc" {
