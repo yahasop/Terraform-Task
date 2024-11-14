@@ -106,7 +106,8 @@ resource "aws_security_group" "alb-secgroup" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${chomp(data.http.my-ip.response_body)}/32"]
+    #cidr_blocks = ["${chomp(data.http.my-ip.response_body)}/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
